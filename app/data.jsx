@@ -126,8 +126,27 @@ const FoodPlaceholder = ({ label, height = 160, accent }) => (
   </div>
 );
 
+/* Toggle switch — shared across admin modules */
+const Toggle = ({ on, onChange, disabled }) => (
+  <button onClick={disabled ? undefined : onChange}
+    aria-checked={on} role="switch"
+    style={{
+      width: 38, height: 22, borderRadius: 999, padding: 2,
+      background: on ? "var(--success)" : "var(--bg-3)",
+      transition: "background 180ms var(--ease)", display: "flex", alignItems: "center",
+      opacity: disabled ? 0.4 : 1, cursor: disabled ? "not-allowed" : "pointer",
+    }}>
+    <span style={{
+      width: 18, height: 18, borderRadius: 999, background: "#fff",
+      transform: on ? "translateX(16px)" : "translateX(0)",
+      transition: "transform 200ms var(--ease)",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+    }}/>
+  </button>
+);
+
 /* Export everything to window */
 Object.assign(window, {
   MENU, CATEGORIES, ALLERGEN_FILTERS, TESTIMONIALS, HOURS,
-  fmt, Icon, StarRow, TagBadges, FoodPlaceholder,
+  fmt, Icon, StarRow, TagBadges, FoodPlaceholder, Toggle,
 });
